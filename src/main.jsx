@@ -9,6 +9,12 @@ import './index.css'
 import Login from './admin/Login.jsx'
 import EditBusinesData from './businesData/EditBusinesData.jsx'
 import BusinesData from './businesData/BusinesData.jsx'
+import Service from './service/Service.jsx'
+import AddService from './service/AddService.jsx'
+import ServiceList from './service/ServiceList'
+import Meeting from './meeting/Meeting.jsx'
+import AddMeeting from './meeting/AddMeeting.jsx'
+import MeetingList from './meeting/MeetingList.jsx'
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -18,37 +24,66 @@ const Router = () => {
     },
     {
       path: "/admin",
-      element:<AdminHome/>,
+      element: <AdminHome />,
     },
     {
-      path:"/failed",
-       element:<LoginFailed/>
+      path: "/failed",
+      element: <LoginFailed />
     },
     {
-      path:"/user",
-       element:<UserPage/>
+      path: "/user",
+      element: <UserPage />
     },
     {
-      path:"/login",
-    element:<Login/>
+      path: "/login",
+      element: <Login />
 
     },
     {
-      path:"/editBusinesData",
-      element:<EditBusinesData/>
+      path: "/editBusinesData",
+      element: <EditBusinesData />
     },
     {
-      path:"/businesData",
-      element:<BusinesData/>
-    }
+      path: "/businesData",
+      element: <BusinesData />
+    },
+    {
+      path:"/service",
+       element:<Service />
+    },
+    {
+      path: "/addService",
+      element: <AddService />
+    },
+    {
+      path: "/serviceList",
+      element: <ServiceList />
+    },
+    {
+      path: "/meeting",
+      element: <Meeting />
+    },
+    {
+    path: "/addMeeting",
+    element: <AddMeeting />
+  },
+  {
+    path: "/meetinglist",
+    element: <MeetingList />
+  },
+
+
     
-    
+
+
+
+
   ]);
   return (
-      <RouterProvider router={router} />
+    <RouterProvider router={router} />
   );
 
-  
+
 
 };
 export default Router

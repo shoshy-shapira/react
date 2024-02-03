@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Outlet } from 'react-router-dom';
-import Alert from '@mui/material/Alert';
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -19,21 +18,21 @@ function LoginFailed() {
 
   const handleNoClick = () => {
     setOpen(false);
-    navigate(`/login`);
+    navigate(`/`);
   };
 
   return (
     <>
       <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>Log In Failed</DialogTitle>
+        <DialogTitle>הכניסה נכשלה!!</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Do you want to log in as a user?
+            אתה מעוניין להכנס בתור משתמש?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleYesClick}>Yes</Button>
-          <Button onClick={handleNoClick}>No</Button>
+          <Button onClick={handleYesClick}>כן</Button>
+          <Button onClick={handleNoClick}>לא</Button>
         </DialogActions>
       </Dialog>
     </>

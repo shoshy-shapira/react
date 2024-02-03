@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import React from 'react';
+import './admin.css'
+import Login from './Login';
 import BusinesData from '../businesData/BusinesData';
-/*import {LogoHandler} from "../img/LogoHandler.png";*/
+import ServiceList from '../service/ServiceList';
+import MeetingList from '../meeting/MeetingList';
+import BusinesDataStore from '../businesData/BusinesDataStore';
+import { useNavigate } from "react-router-dom";
 
 function AdminHome() {
- 
+  const navigate = useNavigate();
+
+
   return (
     <>
-    <BusinesData/>
-    AdminHome
-    
+      {!BusinesDataStore.isLogin ? (
+        <Login onLoginSuccess={() => setIsLogin(true)} />
+      ) : (<><BusinesData />
+        <div class="oneDiv" >
+          <ServiceList />
+          <button class="Button" onClick={() => navigate('/addService')}>להוספת שירות</button>
+          {/* <div class="all"> */}
+            <MeetingList />
+          {/* </div> */}
+          <button class="Button" onClick={() => navigate('/addMeeting')}> לקביעת פגישה</button>
+        </div>
+      </>
+      )}
+
+
     </>
   )
 }

@@ -1,112 +1,100 @@
 import React, { useState } from 'react';
-import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { observer } from 'mobx-react';
+import BusinesDataStore from "./BusinesDataStore";
+import { saveData } from '../service/serviceServer';
 import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './header.css'
 
 
+const EditBusinesData = observer(() => {
+  const [open, setOpen] = React.useState(false);
+  const [detailesBusines, setDitail] = useState(BusinesDataStore.business ? { ...BusinesDataStore.business } : {})
+  const navigate = useNavigate()
 
 
-function EditBusinesData() {
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [phone, setPhone] = useState('');
-  const [manager, setManager] = useState('');
-  const [description, setDescription] = useState('');
-  
-  const navigate = useNavigate();
+  const updateDetails = (event) => {
+    const data = { ...detailesBusines };
+    data[event.target.name] = event.target.value;
+    setDitail(data)
 
-  const saveData = () => {
-    //שמור את המשתנים המערך
-    const data = {
-      name: name,
-      address: address,
-      phone: phone,
-      manager: manager,
-      description: description,
-    };
-    //עדכן בשרת
-    axios.post('http://localhost:8787/businessData', data)
-      .then((result) => {
-        console.log('Data saved:', result);
-        // העלה הודעה שהפרטים עודכנו
-        alert("פרטי העסק עודכנו");
-        //עבור לקומפוננטה 
-        //<Outlet />
-        navigate('/businesData',{state:data});
-
-      })
-      .catch((error) => {
-        console.error('Error saving data:', error);
-      });
   };
 
-
-
+  const onclick = () => {
+    saveData(detailesBusines).then(x => {
+      console.log(x)
+      if (x === 1) {
+        navigate('/admin');
+      }
+    })
+  };
 
   return (
     <>
-      <TextField id="outlined-basic"
-        label="שם העסק"
-        type="text"
-        variant="outlined"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <TextField id="outlined-basic"
-        label="כתובת"
-        type="search"
-        variant="outlined"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-      />
-      <TextField id="outlined-basic"
-        label="טלפון"
-        type="number"
-        variant="outlined"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        //הבדיקה הרצויה, אך עושה לי באג
-        //onChange={(e) => {
-          //const input = e.target.value;
-         //const digitsOnly = input.replace(/\D/g, ''); // Remove non-digit characters
-          //const formattedInput = digitsOnly.slice(0, 10); // Limit to at most 10 digits
-         // const finalInput = formattedInput.startsWith('0')
-          //  ? formattedInput
-           // : '0' + formattedInput; // Ensure the first digit is 0
-      
-          //setPhone(finalInput);
-        //}}
-      
-      />
-      <TextField id="outlined-basic"
-        label="מנהל"
-        type="name"
-        variant="outlined"
-        value={manager}
-        onChange={(e) => setManager(e.target.value)}
-      />
-      <TextField id="outlined-basic"
-        label="תיאור העסק"
-        type="text"
-        variant="outlined"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+      <div class='root'>
+        <TextField           class="textField"
 
-      <IconButton aria-label="delete" size="large">
-        <DeleteIcon fontSize="inherit" />
-      </IconButton>
+          id="outlined-basic"
+          label="שם העסק"
+          type="text"
+          variant="outlined"
+          name="name"
+          value={detailesBusines.name}
+          onChange={updateDetails}
+          // className='textField'
+        />
+        <TextField           class="textField"
 
-      <Button variant="text" onClick={saveData}>עדכן</Button>
+          id="outlined-basic"
+          label="כתובת"
+          type="search"
+          variant="outlined"
+          name="address"
+          value={detailesBusines.address}
+          onChange={updateDetails}
+          // className="textField"
+        />
+        <TextField           class="textField"
+
+          id="outlined-basic"
+          label="טלפון"
+          type="number"
+          variant="outlined"
+          name="phone"
+          value={detailesBusines.phone}
+          onChange={updateDetails}
+          // className="textField"
+        />
+        <TextField           class="textField"
+          id="outlined-basic"
+          label="מנהל"
+          type="name"
+          variant="outlined"
+          value={detailesBusines.manager}
+          name="manager"
+          onChange={updateDetails}
+        />
+        <TextField           class="textField"
+
+          id="outlined-basic"
+          label="תיאור העסק"
+          multiline
+          rows={4}
+          variant="outlined"
+          name="description"
+          value={detailesBusines.description}
+          onChange={updateDetails}
+          // className={classes.textField}
+        />
+        <Button class="button" variant="contained" color="primary" onClick={onclick} 
+        // className={classes.button}
+        >
+          Save
+        </Button>
+      </div>
     </>
-
-  )
-
-
-}
-
+);
+  });
 export default EditBusinesData
 

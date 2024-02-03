@@ -1,0 +1,130 @@
+.business-header {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    /* padding: 20px; */
+    z-index: 1; 
+    margin-bottom: 30%;
+  }
+  
+  .business-details {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* margin-left: 20%; */
+    background-color: rgb(215 81 117 / 39%);
+    
+  }
+  #kav{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2rem;
+    background-color:#c33352;
+    ;
+
+  }
+  
+  .business-name {
+    color: #c33352;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 3px 3px 3px #dd476f;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  
+  .business-name::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 5%;
+    width: 60%;
+    background-color: #02090b;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: shineAnimation 3s infinite;
+  }
+  
+  .business-name::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 100%;
+    height: 5%;
+    width: 60%;
+    background-color: #d42424;
+    transform: scaleX(0);
+    transform-origin: right;
+    animation: shineAnimation 3s infinite;
+  }
+  
+  @keyframes shineAnimation {
+    0% {
+      transform: scaleX(0);
+    }
+    50% {
+      transform: scaleX(1);
+    }
+    100% {
+      transform: scaleX(0);
+    }
+  }
+  
+  .business-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+  .business-address,
+  .business-phone,
+  .business-owner {
+    color: rgb(10, 4, 4);
+    font-size: 100%;
+    margin: 5px 0;
+  }
+  .business-des{
+    color: rgb(102, 102, 102);
+    font-size: 75%;
+    width: 60%;
+  margin-right: 15%;
+  }
+  
+  .business-logo {
+    width: 20%;
+    height: 60%;
+    margin-right: 0;
+    margin-top: -2%;
+  }
+  .editButton .MuiFab-primary{
+    background-color: #c33352;
+  }
+  body{
+    background-color: #ffffff;
+  }
+  .css-sghohy-MuiButtonBase-root-MuiButton-root {
+    margin-right: 60% !important;
+  }
+
+  /*editDB*/
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .textField {
+    width: 100%;
+  }
+  
+  .button {
+    margin-top: 16px;
+  }
+    
