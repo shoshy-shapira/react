@@ -33,7 +33,7 @@ const EditBusinesData = observer(() => {
   return (
     <>
       <div class='root'>
-        <TextField           class="textField"
+        <TextField  class="textField"
 
           id="outlined-basic"
           label="שם העסק"

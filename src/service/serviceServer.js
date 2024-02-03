@@ -1,39 +1,27 @@
-import axios from 'axios';
 import serviceStore from './serviceStore'
-import { useNavigate } from 'react-router-dom';
 import BusinesDataStore from '../businesData/BusinesDataStore';
 import meetingStore from '../meeting/meetingStore';
-import swal from 'sweetalert';
 import Swal from 'sweetalert2';
-
-// import LoginFailed from './LoginFailed';
-// import Alert from '@mui/material/Alert';
-// const navigate = useNavigate();
+import axios from 'axios';
 
 
 //--------------login
-//מכאן לסרבר
 export const loginTo=async (formValues) => {
     if (formValues) {
       const { username, password } = formValues;
       const response = await axios.post('http://localhost:8787/login', { name: username, password });
       if (response.status === 200) {
         console.log('success');
-        // BusinesDataStore.isLogin=true;
         return 1
-        // onLoginSuccess();
-        // navigate('/admin');
       }
     }
     else{
     if (error.response && error.response.status === 401) {
       console.log('login failed');
       return 2
-      // navigate('/failed');
     } else {
       console.log(error);
       return 3
-      // navigate('/failed');
     }
   }
   }
@@ -43,18 +31,35 @@ export const loginTo=async (formValues) => {
 
 //---------------------Services
 
+// export const getServices = async () => {
+//   if (serviceStore.services.length===0) {
+//     axios.get('http://localhost:8787/services')
+//       .then((result) => {
+//         console.log('Data saved:', result);
+//         serviceStore.setServices(result.data)
+//       }).catch((error) => {
+//         console.error('Error saving data:', error);
+
+//       });
+//   }
+
+// }
 export const getServices = async () => {
-  if (!serviceStore.services.length) {
-    axios.get('http://localhost:8787/services')
-      .then((result) => {
+  const response = await axios.get('http://localhost:8787/services')
+  const servicesFromService = response.data;
+
+  if (servicesFromService.length===0) {
         console.log('Data saved:', result);
-        serviceStore.setServices(result.data)
-      }).catch((error) => {
-        console.error('Error saving data:', error);
-      });
+        serviceStore.setServices(servicesFromService)
+      }else {
+        console.log('services from my code');
+        serviceStore.setServices(services)
+
+        
   }
 
 }
+
 //---------------------DataBusines
 
 export const getDataBusines = async () => {
@@ -62,12 +67,14 @@ export const getDataBusines = async () => {
   
   const response = await axios.get('http://localhost:8787/businessData')
   const dataBusinesFromService = response.data;
-  if (!dataBusinesFromService.length) {
+  console.log(dataBusinesFromService, "dataBusinesFromService")
+  if (dataBusinesFromService.length===0) {
     console.log('Data saved:', dataBusinesFromService);
     BusinesDataStore.setBuisness(dataBusinesFromService)
   }
   else {
     console.log('DataBusines from my code');
+    BusinesDataStore.setBuisness(business)
   };
 }
 

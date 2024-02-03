@@ -19,9 +19,7 @@ function AdminHome() {
         <div class="oneDiv" >
           <ServiceList />
           <button class="Button" onClick={() => navigate('/addService')}>להוספת שירות</button>
-          {/* <div class="all"> */}
             <MeetingList />
-          {/* </div> */}
           <button class="Button" onClick={() => navigate('/addMeeting')}> לקביעת פגישה</button>
         </div>
       </>

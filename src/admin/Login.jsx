@@ -1,19 +1,16 @@
+import BusinesDataStore from "../businesData/BusinesDataStore"; //עבור isLogin
 import { loginTo } from "../service/serviceServer";
+import onlyLogo from '../images/onlyLogo.png'
 import {  useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import BusinesDataStore from "../businesData/BusinesDataStore"; //עבור isLogin
-import onlyLogo from '../images/onlyLogo.png'
 
 
 
 
 function Login() {
-  // const [name, setName] = useState('');
-  // const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    // try {
     const { value: formValues } = await Swal.fire({
       title: 'התחברות',
       html: `
@@ -43,25 +40,6 @@ function Login() {
       navigate('/failed');
     })
 
-    //מכאן לסרבר
-    //   if (formValues) {
-    //     const { username, password } = formValues;
-    //     const response = await axios.post('http://localhost:8787/login', { name: username, password });
-    //     if (response.status === 200) {
-    //       console.log('success');
-    //       BusinesDataStore.isLogin=true;
-    //       // onLoginSuccess();
-    //       navigate('/admin');
-    //     }
-    //   }
-    // } catch (error) {
-    //   if (error.response && error.response.status === 401) {
-    //     console.log('login failed');
-    //     navigate('/failed');
-    //   } else {
-    //     console.log(error);
-    //     navigate('/failed');
-    //   }
   }
 
 

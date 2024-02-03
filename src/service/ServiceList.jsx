@@ -22,7 +22,7 @@ const ServiceList = observer(() => {
         השירותים שלנו:
       </Typography>
 
-      <Grid classes='container' container spacing={2}>
+      <Grid class='container' container spacing={2}>
         {serviceStore.services.map((x) => (
           <Grid item key={x.name} xs={12} sm={6} md={4}>
             <Card sx={{ maxWidth: 345 }}>

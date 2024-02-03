@@ -5,7 +5,7 @@ import { observable, makeObservable, action } from 'mobx';
 
 class serviceStore{
     services=[
-        /*{
+        {
             name:"fdgdfg",
             description:"jhjgjk,"
         },        {
@@ -17,7 +17,7 @@ class serviceStore{
         },        {
             name:"fdgdfg",
             description:"jhjgjk,"
-        },*/
+        },
     ];
     
 
