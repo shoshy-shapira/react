@@ -9,6 +9,8 @@ function App() {
   const navigat = useNavigate();
   BusinesDataStore.isLogin = false;
 
+
+
   return (
     <>
       <BusinesData />

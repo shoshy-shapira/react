@@ -70,7 +70,7 @@ export const getDataBusines = async () => {
   const response = await axios.get('http://localhost:8787/businessData')
   const dataBusinesFromService = response.data;
   console.log(dataBusinesFromService, "dataBusinesFromService")
-  if (dataBusinesFromService.length===ג0) {
+  if (Object.keys(dataBusinesFromService).length>0) {
     console.log('Data saved:', dataBusinesFromService);
     BusinesDataStore.setBuisness(dataBusinesFromService)
   }
