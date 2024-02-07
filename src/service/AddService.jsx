@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import serviceStore from "./serviceStore"
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
@@ -7,11 +7,11 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Button from '@mui/material/Button';
 import { observer } from 'mobx-react';
 import axios from 'axios';
+import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { getServices } from './serviceServer';
 
 
 const AddService=observer(()=> {
-  //const datailesService=serviceStore.services;
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const navigate = useNavigate()
@@ -28,11 +28,9 @@ const AddService=observer(()=> {
       serviceStore.addNewService(service)
       navigate('/admin')
 
-      //serviceStore.addNewService(service);
   })      .catch((error) => {
     console.error('Error saving data:', error);
   });
-
 };
 
 
@@ -44,6 +42,10 @@ useEffect(() => {
   
     return (
       <>
+                  <Dialog open={true} fullWidth >
+                <DialogTitle>הוספת שירות נוסף</DialogTitle>
+                <DialogContent>
+
       <Box
         component="form"
         sx={{
@@ -54,7 +56,6 @@ useEffect(() => {
       >
         <div>
           <TextField
-            //id="outlined-multiline-flexible"
             label="סוג השירות"
             multiline
             maxRows={4}
@@ -63,7 +64,6 @@ useEffect(() => {
   
           />
           <TextField
-            //id="outlined-multiline-static"
             label="תיאור"
             multiline
             rows={4}
@@ -78,7 +78,9 @@ useEffect(() => {
         <Button variant="contained" endIcon={<AddShoppingCartIcon />}onClick={handleAddService}>
     הוסף
   </Button>
-  
+  </DialogContent>
+            </Dialog>
+
       </>
     )
   })

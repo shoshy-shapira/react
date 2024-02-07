@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { observer } from 'mobx-react';
+import './header.css'
 import BusinesDataStore from "./BusinesDataStore";
 import { saveData } from '../service/serviceServer';
+import React, { useState } from 'react';
+import { observer } from 'mobx-react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
-import './header.css'
+import { Dialog, DialogContentText, DialogTitle } from '@mui/material';
 
 
 const EditBusinesData = observer(() => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(true);
   const [detailesBusines, setDitail] = useState(BusinesDataStore.business ? { ...BusinesDataStore.business } : {})
   const navigate = useNavigate()
 
@@ -32,8 +33,13 @@ const EditBusinesData = observer(() => {
 
   return (
     <>
-      <div class='root'>
-        <TextField  class="textField"
+                <Dialog open={true} fullWidth >
+                <DialogTitle>עדכון פרטי העסק</DialogTitle>
+                <DialogContentText>
+
+      <div className='root'>
+        
+        <TextField  className="textField"
 
           id="outlined-basic"
           label="שם העסק"
@@ -42,9 +48,8 @@ const EditBusinesData = observer(() => {
           name="name"
           value={detailesBusines.name}
           onChange={updateDetails}
-          // className='textField'
         />
-        <TextField           class="textField"
+        <TextField className="textField"
 
           id="outlined-basic"
           label="כתובת"
@@ -53,9 +58,8 @@ const EditBusinesData = observer(() => {
           name="address"
           value={detailesBusines.address}
           onChange={updateDetails}
-          // className="textField"
         />
-        <TextField           class="textField"
+        <TextField           className="textField"
 
           id="outlined-basic"
           label="טלפון"
@@ -64,9 +68,8 @@ const EditBusinesData = observer(() => {
           name="phone"
           value={detailesBusines.phone}
           onChange={updateDetails}
-          // className="textField"
         />
-        <TextField           class="textField"
+        <TextField           className="textField"
           id="outlined-basic"
           label="מנהל"
           type="name"
@@ -75,7 +78,7 @@ const EditBusinesData = observer(() => {
           name="manager"
           onChange={updateDetails}
         />
-        <TextField           class="textField"
+        <TextField           className="textField"
 
           id="outlined-basic"
           label="תיאור העסק"
@@ -85,14 +88,15 @@ const EditBusinesData = observer(() => {
           name="description"
           value={detailesBusines.description}
           onChange={updateDetails}
-          // className={classes.textField}
         />
-        <Button class="button" variant="contained" color="primary" onClick={onclick} 
-        // className={classes.button}
+        <Button className="button" variant="contained" color="primary" onClick={onclick} 
         >
           Save
         </Button>
       </div>
+      </DialogContentText>
+            </Dialog>
+
     </>
 );
   });

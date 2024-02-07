@@ -44,4 +44,31 @@ padding: 0;
     max-width: unset !important;
     margin: unset !important;
 }
+.css-tlc64q-MuiPaper-root-MuiDialog-paper{  
+      background-color: #dd476f47 !important;
+      text-align: center  !important;
+}
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    background-color: white !important;
+}
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{  
+      background-color: white !important;
+}
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+    background-color: white !important;
 
+}
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root{
+    color:white  !important;
+    background-color: black !important;
+
+
+}
+.MuiTypography-h6{
+    color:black  !important;
+
+}
+.swal2-container {
+    z-index: 99999; /* Set a high z-index value */
+  }
+  

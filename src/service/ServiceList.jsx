@@ -1,11 +1,10 @@
+import './service.css'
+import serviceStore from "./serviceStore";
+import { getServices } from "./serviceServer";
+import images from '../images/images.jpeg';
 import { observer } from "mobx-react";
 import { useEffect } from "react";
-import { getServices } from "./serviceServer";
-import serviceStore from "./serviceStore";
-import { Card, CardActionArea, CardMedia, CardContent, Typography, Grid, Button } from '@mui/material';
-import images from '../images/images.jpeg';
-import { useNavigate, useParams } from "react-router-dom";
-import './service.css'
+import { Card, CardActionArea, CardContent, Typography, Grid } from '@mui/material';
 
 
 const ServiceList = observer(() => {
@@ -18,11 +17,12 @@ const ServiceList = observer(() => {
 
   return (
     <>
-      <Typography class="cotert">
+      <Typography className="cotert">
         השירותים שלנו:
       </Typography>
-
-      <Grid class='container' container spacing={2}>
+{console.log('serviceStore.services',serviceStore.services.length)}
+{console.log('serviceStore.services',serviceStore.services[6])}
+      <Grid className='container' container spacing={2}>
         {serviceStore.services.map((x) => (
           <Grid item key={x.name} xs={12} sm={6} md={4}>
             <Card sx={{ maxWidth: 345 }}>
@@ -37,7 +37,6 @@ const ServiceList = observer(() => {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              {/* <Button onClick={() => handleViewClick(x)}>הצג</Button> */}
             </Card>
           </Grid>
         ))}

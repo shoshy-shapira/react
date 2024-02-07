@@ -16,11 +16,11 @@ function AdminHome() {
       {!BusinesDataStore.isLogin ? (
         <Login onLoginSuccess={() => setIsLogin(true)} />
       ) : (<><BusinesData />
-        <div class="oneDiv" >
+        <div className="oneDiv" >
           <ServiceList />
-          <button class="Button" onClick={() => navigate('/addService')}>להוספת שירות</button>
+          <button className="Button" onClick={() => navigate('/addService')}>להוספת שירות</button>
             <MeetingList />
-          <button class="Button" onClick={() => navigate('/addMeeting')}> לקביעת פגישה</button>
+          <button className="Button" onClick={() => navigate('/addMeeting')}> לקביעת פגישה</button>
         </div>
       </>
       )}

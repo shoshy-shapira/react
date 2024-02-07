@@ -1,10 +1,10 @@
-import { useEffect } from "react"
+import './meeting.css'
 import meetingStore from "./meetingStore"
+import { useEffect } from "react"
 import { Grid, Paper, Typography } from "@mui/material"
 import { observer } from "mobx-react"
 import { getMeeting } from "../service/serviceServer"
 import { makeStyles } from '@material-ui/core/styles';
-import './meeting.css'
 
 
 const getColr = (datetime) => {
@@ -49,12 +49,12 @@ const MeetingList = observer(() => {
   }, [])
   return (
     <>
-<div id="div" className={classes.root}>
+<div id="div">
   {meetingStore.all_meeting
       .slice() // יצירת עותק של המערך
     .sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime))
     .map((meeting, index) => (
-      <div
+      <div  key={index}
         className={
           getColr(meeting.dateTime) === 0
             ? `red`
@@ -63,13 +63,13 @@ const MeetingList = observer(() => {
             : `green`
         }
       >
-        <Grid item key={index}>
-          <Paper id="paper" className={classes.card}>
-            {Object.entries(meeting).map(([key, value]) => (
-              <>
+        <Grid item>
+          <Paper id="paper" className="card">
+            {Object.entries(meeting).map(([key, value], ind) => (
+              <div key={ind}>
                 <Typography variant="subtitle1">{key}:</Typography>
                 <Typography variant="body1">{value}</Typography>
-              </>
+              </div>
             ))}
           </Paper>
         </Grid>

@@ -3,11 +3,15 @@ import { loginTo } from "../service/serviceServer";
 import onlyLogo from '../images/onlyLogo.png'
 import {  useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useEffect } from "react";
 
 
 
 
 function Login() {
+  // useEffect(()=>{
+
+  // },[])
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -15,10 +19,10 @@ function Login() {
       title: 'התחברות',
       html: `
             <label>שם משתמש:
-              <input type="text" id="username" class="swal2-input">
+              <input type="text" id="username" className="swal2-input">
             </label>
             <label>סיסמה:
-              <input type="password" id="password" class="swal2-input">
+              <input type="password" id="password" className="swal2-input">
             </label>
           `,
       focusConfirm: false,
@@ -36,8 +40,10 @@ function Login() {
     }
     if (x === 2)
       navigate('/failed');
-    if (x === 2)
+    if (x === 3)
       navigate('/failed');
+      
+    
     })
 
   }

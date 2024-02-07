@@ -7,6 +7,7 @@ import axios from 'axios';
 
 //--------------login
 export const loginTo=async (formValues) => {
+  try{
     if (formValues) {
       const { username, password } = formValues;
       const response = await axios.post('http://localhost:8787/login', { name: username, password });
@@ -15,7 +16,8 @@ export const loginTo=async (formValues) => {
         return 1
       }
     }
-    else{
+  }
+    catch(error){
     if (error.response && error.response.status === 401) {
       console.log('login failed');
       return 2
@@ -31,33 +33,33 @@ export const loginTo=async (formValues) => {
 
 //---------------------Services
 
-// export const getServices = async () => {
-//   if (serviceStore.services.length===0) {
-//     axios.get('http://localhost:8787/services')
-//       .then((result) => {
-//         console.log('Data saved:', result);
-//         serviceStore.setServices(result.data)
-//       }).catch((error) => {
-//         console.error('Error saving data:', error);
-
-//       });
-//   }
-
-// }
 export const getServices = async () => {
   const response = await axios.get('http://localhost:8787/services')
   const servicesFromService = response.data;
+console.log('---------------servicesFromService',servicesFromService)
+console.log('---------------servicesFromService-length',servicesFromService.length)
 
-  if (servicesFromService.length===0) {
-        console.log('Data saved:', result);
-        serviceStore.setServices(servicesFromService)
+  if (servicesFromService.length>0) {
+    serviceStore.setServices(servicesFromService)
+    console.log('Data saved:', response.data);
+
       }else {
+        for (let index = 0; index < serviceStore.services.length; index++) {
+         postService(serviceStore.services[index])
+          
+        }
+        serviceStore.setServices(serviceStore.services)
         console.log('services from my code');
-        serviceStore.setServices(services)
+    
 
-        
   }
 
+}
+export const postService=async (service)=>{
+  // axios.post('http://localhost:8787/service',{"name":"aaaaa","description":"sssss"})
+  axios.post('http://localhost:8787/service',service)
+  .then((res)=>console.log('res',res))
+  .catch((error)=>console.log(error))
 }
 
 //---------------------DataBusines
@@ -68,17 +70,17 @@ export const getDataBusines = async () => {
   const response = await axios.get('http://localhost:8787/businessData')
   const dataBusinesFromService = response.data;
   console.log(dataBusinesFromService, "dataBusinesFromService")
-  if (dataBusinesFromService.length===0) {
+  if (dataBusinesFromService.length===ג0) {
     console.log('Data saved:', dataBusinesFromService);
     BusinesDataStore.setBuisness(dataBusinesFromService)
   }
   else {
     console.log('DataBusines from my code');
-    BusinesDataStore.setBuisness(business)
+    BusinesDataStore.setBuisness(BusinesDataStore.business)
   };
 }
 
-// }
+
 
 export const saveData = async (detailesBusines) => {
 
@@ -86,12 +88,12 @@ export const saveData = async (detailesBusines) => {
     //עדכן בשרת
     const result = await axios.post('http://localhost:8787/businessData', detailesBusines)
 
-    // .then((result) => {
     console.log('Data saved:', result);
     // העלה הודעה שהפרטים עודכנו
     alert("פרטי העסק עודכנו");
     //עבור לקומפוננטה 
     BusinesDataStore.setBuisness(detailesBusines)
+console.log("BusinesDataStore",BusinesDataStore)
     return 1
 
 
@@ -112,14 +114,11 @@ export const saveMeeting = async (newMeeting) => {
     //עדכן בשרת
     const result = await axios.post('http://localhost:8787/appointment', newMeeting)
 
-    // .then((result) => {
     console.log('Data saved:', result);
     if(result.status===200){
       meetingStore.addMeeting(newMeeting)
     //עבור לקומפוננטה 
-   // meetingStore.setMeetings(newMeeting);
         // העלה הודעה שהפרטים עודכנו
-    // alert(" נקבע שעת צילום");
     Swal.fire({
       title: "נקבעה פגישה",
       text: "פרטיך נקלטו בהצלחה",
@@ -135,7 +134,6 @@ export const saveMeeting = async (newMeeting) => {
       Swal.fire({
       title: ' הופססס... תפסו לך ',
       text: 'תמיד יש לך זמן עבור הדברים החשובים באמת',
-      text: 'חפש',
       icon: "error"
     });
     // return false

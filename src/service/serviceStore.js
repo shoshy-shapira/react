@@ -6,17 +6,17 @@ import { observable, makeObservable, action } from 'mobx';
 class serviceStore{
     services=[
         {
-            name:"fdgdfg",
-            description:"jhjgjk,"
+            "name":"צילומי חלאקה",
+            "description":"הנצחת הרגעים המתוקים, שניה לפני התספורת"
         },        {
-            name:"fdgdfg",
-            description:"jhjgjk,"
+            "name":"חתונה",
+            "description":"היום נעשה משהו בלתי נשכח שישאיר זיכרון של שמחה מבורך"
         },        {
-            name:"fdgdfg",
-            description:"jhjgjk,"
+            "name":"new-born",
+            "description":"לרגע הזה הוא נולד"
         },        {
-            name:"fdgdfg",
-            description:"jhjgjk,"
+            "name":"צילומי משפחות",
+            "description":"צילומי חוץ, זכרו את הרגעים הקטנים שיוצרים זכרונות גדולים"
         },
     ];
     
@@ -35,19 +35,17 @@ class serviceStore{
         {
             this.services=data;
         }
-        else 
-        this.services=[];
+        // else 
+        // this.services=[];
     }
     
     addNewService=(service)=>{
+        console.log('bef-my service',this.services)
         this.services=[...this.services,service];
-        // console.log("addNewService   service",service);
+        console.log('af-my service',this.services)
+
+
     }
-    /*getServiceById(serviceName){
-        //getServices()
-       const thisService = this.services.find((service)=>service.name===serviceName);
-        return thisService;
-    }*/
 
 
 }

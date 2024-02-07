@@ -1,4 +1,4 @@
-
+import './user.css'
 import { useNavigate } from 'react-router-dom';
 import Login from '../admin/Login';
 import BusinesData from '../businesData/BusinesData';
@@ -12,9 +12,9 @@ function UserPage() {
   return (
     <>
       <BusinesData />
-        <div class="oneDiv" >
+        <div className="oneDiv" >
           <ServiceList />
-          <button class="Button" onClick={() => navigate('/addMeeting')}> לקביעת פגישה</button>
+          <button className="Button" onClick={() => navigate('/addMeeting')}> לקביעת פגישה</button>
         </div>
       </>
       

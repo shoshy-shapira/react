@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <BusinesData />
-      <div class="homepage_tag">
+      <div className="homepage_tag">
         <div className="homepage-container">
           <h1 className="homepage-title">ברוכים הבאים</h1>
         </div>
