@@ -35,8 +35,8 @@ class serviceStore{
         {
             this.services=data;
         }
-        // else 
-        // this.services=[];
+        else 
+        this.services=[];
     }
     
     addNewService=(service)=>{

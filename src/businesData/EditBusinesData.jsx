@@ -93,9 +93,11 @@ const EditBusinesData = observer(() => {
         >
           Save
         </Button>
-      </div>
+        </div>
+
       </DialogContentText>
             </Dialog>
+
 
     </>
 );
